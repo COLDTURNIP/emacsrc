@@ -25,17 +25,17 @@
       '(
         ;; if frame created on x display
         (x
-     ;; mouse
-     (mouse-wheel-mode . 1)
-     (mouse-wheel-follow-mouse . t)
-     (mouse-avoidance-mode . 'exile)
-     ;; face
-     (font . "Droid Sans Mono-8")
-     )
+          ;; mouse
+          (mouse-wheel-mode . 1)
+          (mouse-wheel-follow-mouse . t)
+          (mouse-avoidance-mode . 'exile)
+          ;; face
+          (font . "Droid Sans Mono-8")
+          )
         ;; if on term
         (nil
-     )
-    )
+          )
+        )
       )
 
 ;; encoding scheme
@@ -71,34 +71,34 @@
 
 (defun redo (&optional count)
   "Redo the the most recent undo.
-Prefix arg COUNT means redo the COUNT most recent undos.
-If you have modified the buffer since the last redo or undo,
-then you cannot redo any undos before then."
+  Prefix arg COUNT means redo the COUNT most recent undos.
+  If you have modified the buffer since the last redo or undo,
+  then you cannot redo any undos before then."
   (interactive "*p")
   (if (eq buffer-undo-list t)
-      (error "No undo information in this buffer"))
+    (error "No undo information in this buffer"))
   (if (eq last-buffer-undo-list nil)
-      (error "No undos to redo"))
+    (error "No undos to redo"))
   (or (eq last-buffer-undo-list buffer-undo-list)
       ;; skip one undo boundary and all point setting commands up
       ;; until the next undo boundary and try again.
       (let ((p buffer-undo-list))
-    (and (null (car-safe p)) (setq p (cdr-safe p)))
-    (while (and p (integerp (car-safe p)))
-      (setq p (cdr-safe p)))
-    (eq last-buffer-undo-list p))
+        (and (null (car-safe p)) (setq p (cdr-safe p)))
+        (while (and p (integerp (car-safe p)))
+               (setq p (cdr-safe p)))
+        (eq last-buffer-undo-list p))
       (error "Buffer modified since last undo/redo, cannot redo"))
   (and (or (eq buffer-undo-list pending-undo-list)
-       (eq (cdr buffer-undo-list) pending-undo-list))
+           (eq (cdr buffer-undo-list) pending-undo-list))
        (error "No further undos to redo in this buffer"))
   (or (eq (selected-window) (minibuffer-window))
       (message "Redo..."))
   (let ((modified (buffer-modified-p))
-    (undo-in-progress t)
-    (recent-save (recent-auto-save-p))
-    (old-undo-list buffer-undo-list)
-    (p (cdr buffer-undo-list))
-    (records-between 0))
+        (undo-in-progress t)
+        (recent-save (recent-auto-save-p))
+        (old-undo-list buffer-undo-list)
+        (p (cdr buffer-undo-list))
+        (records-between 0))
     ;; count the number of undo records between the head of the
     ;; undo chain and the pointer to the next change.  Note that
     ;; by `record' we mean clumps of change records, not the
@@ -109,24 +109,24 @@ then you cannot redo any undos before then."
     ;; we decrease it we will decrease it by a multiple of 2
     ;; also.
     (while p
-      (cond ((eq p pending-undo-list)
-         (setq p nil))
-        ((null (car p))
-         (setq records-between (1+ records-between))
-         (setq p (cdr p)))
-        (t
-         (setq p (cdr p)))))
+           (cond ((eq p pending-undo-list)
+                  (setq p nil))
+                 ((null (car p))
+                  (setq records-between (1+ records-between))
+                  (setq p (cdr p)))
+                 (t
+                   (setq p (cdr p)))))
     ;; we're off by one if pending pointer is nil, because there
     ;; was no boundary record in front of it to count.
     (and (null pending-undo-list)
-     (setq records-between (1+ records-between)))
+         (setq records-between (1+ records-between)))
     ;; don't allow the user to redo more undos than exist.
     ;; only half the records between the list head and the pending
     ;; pointer are undos that are a part of this command chain.
     (setq count (min (/ records-between 2) count)
-      p (primitive-undo (1+ count) buffer-undo-list))
+          p (primitive-undo (1+ count) buffer-undo-list))
     (if (eq p old-undo-list)
-            nil ;; nothing happened
+      nil ;; nothing happened
       ;; set buffer-undo-list to the new undo list.  if has been
       ;; shortened by `count' records.
       (setq buffer-undo-list p)
@@ -138,37 +138,37 @@ then you cannot redo any undos before then."
       ;; were doubly linked, but no... so we have to run down the
       ;; list from the head and stop at the right place.
       (let ((n (- records-between count)))
-    (setq p (cdr old-undo-list))
-    (while (and p (> n 0))
-      (if (null (car p))
-          (setq n (1- n)))
-      (setq p (cdr p)))
-    (setq pending-undo-list p)))
+        (setq p (cdr old-undo-list))
+        (while (and p (> n 0))
+               (if (null (car p))
+                 (setq n (1- n)))
+               (setq p (cdr p)))
+        (setq pending-undo-list p)))
     (and modified (not (buffer-modified-p))
-     (delete-auto-save-file-if-necessary recent-save))
+         (delete-auto-save-file-if-necessary recent-save))
     (or (eq (selected-window) (minibuffer-window))
-    (message "Redo!"))
+        (message "Redo!"))
     (setq last-buffer-undo-list buffer-undo-list)))
 
 (defun undo (&optional arg)
   "Undo some previous changes.
-Repeat this command to undo more changes.
-A numeric argument serves as a repeat count."
+  Repeat this command to undo more changes.
+  A numeric argument serves as a repeat count."
   (interactive "*p")
   (let ((modified (buffer-modified-p))
-    (recent-save (recent-auto-save-p)))
+        (recent-save (recent-auto-save-p)))
     (or (eq (selected-window) (minibuffer-window))
-    (message "Undo..."))
+        (message "Undo..."))
     (or (eq last-buffer-undo-list buffer-undo-list)
-    ;; skip one undo boundary and all point setting commands up
-    ;; until the next undo boundary and try again.
-    (let ((p buffer-undo-list))
-      (and (null (car-safe p)) (setq p (cdr-safe p)))
-      (while (and p (integerp (car-safe p)))
-        (setq p (cdr-safe p)))
-      (eq last-buffer-undo-list p))
-    (progn (undo-start)
-           (undo-more 1)))
+        ;; skip one undo boundary and all point setting commands up
+        ;; until the next undo boundary and try again.
+        (let ((p buffer-undo-list))
+          (and (null (car-safe p)) (setq p (cdr-safe p)))
+          (while (and p (integerp (car-safe p)))
+                 (setq p (cdr-safe p)))
+          (eq last-buffer-undo-list p))
+        (progn (undo-start)
+               (undo-more 1)))
     (undo-more (or arg 1))
     ;; Don't specify a position in the undo record for the undo command.
     ;; Instead, undoing this should move point to where the change is.
@@ -181,15 +181,15 @@ A numeric argument serves as a repeat count."
     (let ((list buffer-undo-list)
           (prev nil))
       (while (and list (not (null (car list))))
-        (if (integerp (car list))
-            (if prev
-            (setcdr prev (cdr list))
-              ;; impossible now, but maybe not in the future 
-              (setq buffer-undo-list (cdr list))))
-        (setq prev list
-              list (cdr list))))
+             (if (integerp (car list))
+               (if prev
+                 (setcdr prev (cdr list))
+                 ;; impossible now, but maybe not in the future 
+                 (setq buffer-undo-list (cdr list))))
+             (setq prev list
+                   list (cdr list))))
     (and modified (not (buffer-modified-p))
-     (delete-auto-save-file-if-necessary recent-save)))
+         (delete-auto-save-file-if-necessary recent-save)))
   (or (eq (selected-window) (minibuffer-window))
       (message "Undo!"))
   (setq last-buffer-undo-list buffer-undo-list))
@@ -203,14 +203,14 @@ A numeric argument serves as a repeat count."
 ;; Lisp family {
 (setq auto-mode-alist
       (append '(
-        ("\\.emacs$" . emacs-lisp-mode)
-        ("\\.el$" . emacs-lisp-mode)
-        ("\\.lisp$" . lisp-mode)
-        ("\\.lsp$" . lisp-mode)
-        ("\\.cl$" . lisp-mode)
-        ("\\.system$" . lisp-mode)
-        ("\\.scm$" . scheme-mode)
-        ("\\.ss$" . scheme-mode)
-        ("\\.sch$" . scheme-mode)
-        )auto-mode-alist))
+                ("\\.emacs$" . emacs-lisp-mode)
+                ("\\.el$" . emacs-lisp-mode)
+                ("\\.lisp$" . lisp-mode)
+                ("\\.lsp$" . lisp-mode)
+                ("\\.cl$" . lisp-mode)
+                ("\\.system$" . lisp-mode)
+                ("\\.scm$" . scheme-mode)
+                ("\\.ss$" . scheme-mode)
+                ("\\.sch$" . scheme-mode)
+                )auto-mode-alist))
 ;; }
