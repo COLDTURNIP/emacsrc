@@ -204,6 +204,7 @@ A numeric argument serves as a repeat count."
 (setq auto-mode-alist
       (append '(
         ("\\.emacs$" . emacs-lisp-mode)
+        ("\\.el$" . emacs-lisp-mode)
         ("\\.lisp$" . lisp-mode)
         ("\\.lsp$" . lisp-mode)
         ("\\.cl$" . lisp-mode)
