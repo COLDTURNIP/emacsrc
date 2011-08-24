@@ -11,4 +11,5 @@
 (global-set-key [(meta f3)] 'highlight-symbol-prev)
 
 (global-set-key "\C-x\C-b" 'electric-buffer-list)
+(global-set-key "\C-z" 'set-mark-command)
 
