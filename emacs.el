@@ -25,17 +25,17 @@
       '(
         ;; if frame created on x display
         (x
-	 ;; mouse
-	 (mouse-wheel-mode . 1)
-	 (mouse-wheel-follow-mouse . t)
-	 (mouse-avoidance-mode . 'exile)
-	 ;; face
-	 (font . "Droid Sans Mono-8")
-	 )
+     ;; mouse
+     (mouse-wheel-mode . 1)
+     (mouse-wheel-follow-mouse . t)
+     (mouse-avoidance-mode . 'exile)
+     ;; face
+     (font . "Droid Sans Mono-8")
+     )
         ;; if on term
         (nil
-	 )
-	)
+     )
+    )
       )
 
 ;; encoding scheme
@@ -203,13 +203,13 @@ A numeric argument serves as a repeat count."
 ;; Lisp family {
 (setq auto-mode-alist
       (append '(
-		("\\.emacs$" . emacs-lisp-mode)
-		("\\.lisp$" . lisp-mode)
-		("\\.lsp$" . lisp-mode)
-		("\\.cl$" . lisp-mode)
-		("\\.system$" . lisp-mode)
-		("\\.scm$" . scheme-mode)
-		("\\.ss$" . scheme-mode)
-		("\\.sch$" . scheme-mode)
-		)auto-mode-alist))
+        ("\\.emacs$" . emacs-lisp-mode)
+        ("\\.lisp$" . lisp-mode)
+        ("\\.lsp$" . lisp-mode)
+        ("\\.cl$" . lisp-mode)
+        ("\\.system$" . lisp-mode)
+        ("\\.scm$" . scheme-mode)
+        ("\\.ss$" . scheme-mode)
+        ("\\.sch$" . scheme-mode)
+        )auto-mode-alist))
 ;; }
