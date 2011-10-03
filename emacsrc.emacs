@@ -199,7 +199,8 @@ A numeric argument serves as a repeat count."
 ;;
 ;; Automatic format detection
 ;;
-;; Specify modes for Lisp file extensions
+
+;; Lisp family {
 (setq auto-mode-alist
       (append '(
 		("\\.emacs$" . emacs-lisp-mode)
@@ -211,3 +212,4 @@ A numeric argument serves as a repeat count."
 		("\\.ss$" . scheme-mode)
 		("\\.sch$" . scheme-mode)
 		)auto-mode-alist))
+;; }
