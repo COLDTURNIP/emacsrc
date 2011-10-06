@@ -214,3 +214,24 @@
                 ("\\.sch$" . scheme-mode)
                 )auto-mode-alist))
 ;; }
+
+
+
+;;;
+;;; 3rd party plugins
+;;;
+
+;;; undo-tree {
+(add-to-list 'load-path "~/.emacs.d/external/undo-tree")
+(require 'undo-tree)
+;;; }
+
+
+;;; Evil {
+;;; http://gitorious.org/evil/pages/Home
+;;; This plugin depends on undo-tree.
+(add-to-list 'load-path "~/.emacs.d/external/evil")
+(require 'evil)
+(evil-mode 1)
+;;; }
+

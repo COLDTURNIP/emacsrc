@@ -1,0 +1,6 @@
+[submodule "external/evil"]
+	path = external/evil
+	url = git://gitorious.org/evil/evil.git
+[submodule "external/undo-tree"]
+	path = external/undo-tree
+	url = http://www.dr-qubit.org/git/undo-tree.git
