@@ -47,6 +47,26 @@
 (set-clipboard-coding-system 'utf-8)
 (set-next-selection-coding-system 'utf-8)
 
+
+;; clipboard
+; (transient-mark-mode 1)           ; makes the region act quite like the text "highlight" in many apps.
+(setq mouse-drag-copy-region nil)   ; stops selection with a mouse being immediately injected to the kill ring
+(setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection
+(setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
+;; leave the following two lines if above works fine.
+(setf interprogram-cut-function 'x-select-text)
+(setf interprogram-paste-function 'x-cut-buffer-or-selection-value)
+; Workaround: bug #902
+; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
+(setq select-active-regions t)                  ; active region sets primary X11 selection
+(global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection,
+                                                ; not clipboard and kill ring.
+;; with this, doing an M-y will also affect the X11 clipboard, making
+;; emacs act as a sort of clipboard history, at least of text you've
+;; pasted into it in the first place.
+; (setq yank-pop-change-selection t)  ; makes rotating the kill ring change the X11 clipboard.
+
+
 ;; misc
 (icomplete-mode 1)            ; hints for M-x
 (fset 'yes-or-no-p 'y-or-n-p) ; y/n instead of yes/no
