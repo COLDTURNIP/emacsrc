@@ -255,3 +255,7 @@
 (evil-mode 1)
 ;;; }
 
+;;; Go {
+(add-to-list 'load-path "~/.emacs.d/external/go" t)
+(require 'go-mode-load)
+;;; }
