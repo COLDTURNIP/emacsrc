@@ -16,7 +16,7 @@
 (global-set-key (kbd "<f9>") 'view-mode)
 (global-set-key (kbd "C-c C-v") 'view-mode)
 
-;; UI settings
+;;; UI settings
 (global-font-lock-mode 1) ; always syntax highlighting
 (menu-bar-mode -1)        ; do not use menu bar
 (column-number-mode 1)    ; line number
@@ -37,6 +37,9 @@
           )
         )
       )
+;; fringe
+(set-fringe-style "default")
+(set-face-background 'fringe "gray5")
 
 ;; encoding scheme
 (set-terminal-coding-system 'chinese-big5)
