@@ -77,6 +77,7 @@
 (setq track-eol t)               ; keep at line end when C-n/C-p
 (global-set-key (kbd "C-<") 'undo) ; rebinde undo & redo
 (global-set-key (kbd "C->") 'redo)
+(setq default-major-mode 'text-mode) ; default mode for blank startup
 
 ; implement of redo function {
 (provide 'redo)
