@@ -242,6 +242,13 @@
 ;;; 3rd party plugins
 ;;;
 
+;;; linum Plus {
+;;; This plugin shows the line number.
+(add-to-list 'load-path "~/.emacs.d/external/linum-plus")
+(require 'linum+)
+(linum-mode 1)
+;;; }
+
 ;;; undo-tree {
 (add-to-list 'load-path "~/.emacs.d/external/undo-tree")
 (require 'undo-tree)
