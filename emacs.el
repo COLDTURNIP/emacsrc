@@ -68,10 +68,11 @@
 
 
 ;; misc
-(icomplete-mode 1)            ; hints for M-x
-(fset 'yes-or-no-p 'y-or-n-p) ; y/n instead of yes/no
-(setq track-eol t)            ; keep at line end when C-n/C-p
-(global-set-key (kbd "C-<") 'undo)
+(setq inhibit-startup-message t) ; skip startup screen
+(icomplete-mode 1)               ; hints for M-x
+(fset 'yes-or-no-p 'y-or-n-p)    ; y/n instead of yes/no
+(setq track-eol t)               ; keep at line end when C-n/C-p
+(global-set-key (kbd "C-<") 'undo) ; rebinde undo & redo
 (global-set-key (kbd "C->") 'redo)
 
 ; implement of redo function {
