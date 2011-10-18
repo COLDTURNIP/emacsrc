@@ -79,6 +79,7 @@
 (global-set-key (kbd "C->") 'redo)
 (setq default-major-mode 'text-mode) ; default mode for blank startup
 (setq-default tab-width 4)       ; tab width
+(setq-default indent-tabs-mode nil) ; disable indent with tabs as default
 
 ; implement of redo function {
 (provide 'redo)
