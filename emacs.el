@@ -18,7 +18,7 @@
 
 ;;; UI settings
 (global-font-lock-mode 1) ; always syntax highlighting
-(menu-bar-mode -1)        ; do not use menu bar
+;(menu-bar-mode -1)        ; do not use menu bar
 (column-number-mode 1)    ; line number
 (show-paren-mode 1)       ; parenthese pairing
 (setq window-system-default-frame-alist
