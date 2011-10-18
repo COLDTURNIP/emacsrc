@@ -4,3 +4,6 @@
 [submodule "external/undo-tree"]
 	path = external/undo-tree
 	url = http://www.dr-qubit.org/git/undo-tree.git
+[submodule "external/dtrt-indent"]
+	path = external/dtrt-indent
+	url = git://git.savannah.nongnu.org/dtrt-indent.git

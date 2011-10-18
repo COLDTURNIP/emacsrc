@@ -274,6 +274,13 @@
 (yas/load-directory "~/.emacs.d/external/yasnippet-0.6.1c/snippets")
 ;;; }
 
+;;; dtrt indent {
+;;; This plugin helps us to detect proper indent style automatically.
+(add-to-list 'load-path "~/.emacs.d/external/dtrt-indent")
+(require 'dtrt-indent)
+(dtrt-indent-mode 1)
+;;; }
+
 ;;; Go {
 (add-to-list 'load-path "~/.emacs.d/external/go" t)
 (require 'go-mode-load)
