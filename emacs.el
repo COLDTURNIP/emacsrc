@@ -287,3 +287,11 @@
 (add-to-list 'load-path "~/.emacs.d/external/go" t)
 (require 'go-mode-load)
 ;;; }
+
+;;; Scala {
+;;; This plugin is included in official Scala repo under
+;;; misc/scala-tool-support/emacs/ .
+(add-to-list 'load-path "~/.emacs.d/external/scala")
+(require 'scala-mode-auto)
+;;; }
+
