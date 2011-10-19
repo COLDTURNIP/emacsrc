@@ -295,3 +295,9 @@
 (require 'scala-mode-auto)
 ;;; }
 
+;;; ENSIME - ENhanced Scala Interaction Mode for Emacs {
+(add-to-list 'load-path "~/.emacs.d/external/ensime_2.9.1-0.7.6/elisp")
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+;;; }
+
