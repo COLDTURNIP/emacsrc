@@ -132,12 +132,11 @@
 ;; Workaround: bug #902
 ;; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
 (setq select-active-regions t)                  ; active region sets primary X11 selection
-(global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection,
-                                                ; not clipboard and kill ring.
+(global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection, not clipboard and kill ring.
 ;; with this, doing an M-y will also affect the X11 clipboard, making
 ;; emacs act as a sort of clipboard history, at least of text you've
 ;; pasted into it in the first place.
-; (setq yank-pop-change-selection t)  ; makes rotating the kill ring change the X11 clipboard.
+;; (setq yank-pop-change-selection t)  ; makes rotating the kill ring change the X11 clipboard.
 
 
 ;;;; # misc #
@@ -173,16 +172,16 @@
   then you cannot redo any undos before then."
   (interactive "*p")
   (if (eq buffer-undo-list t)
-    (error "No undo information in this buffer"))
+      (error "No undo information in this buffer"))
   (if (eq last-buffer-undo-list nil)
-    (error "No undos to redo"))
+      (error "No undos to redo"))
   (or (eq last-buffer-undo-list buffer-undo-list)
       ;; skip one undo boundary and all point setting commands up
       ;; until the next undo boundary and try again.
       (let ((p buffer-undo-list))
         (and (null (car-safe p)) (setq p (cdr-safe p)))
         (while (and p (integerp (car-safe p)))
-               (setq p (cdr-safe p)))
+          (setq p (cdr-safe p)))
         (eq last-buffer-undo-list p))
       (error "Buffer modified since last undo/redo, cannot redo"))
   (and (or (eq buffer-undo-list pending-undo-list)
@@ -206,13 +205,13 @@
     ;; we decrease it we will decrease it by a multiple of 2
     ;; also.
     (while p
-           (cond ((eq p pending-undo-list)
-                  (setq p nil))
-                 ((null (car p))
-                  (setq records-between (1+ records-between))
-                  (setq p (cdr p)))
-                 (t
-                   (setq p (cdr p)))))
+      (cond ((eq p pending-undo-list)
+             (setq p nil))
+            ((null (car p))
+             (setq records-between (1+ records-between))
+             (setq p (cdr p)))
+            (t
+             (setq p (cdr p)))))
     ;; we're off by one if pending pointer is nil, because there
     ;; was no boundary record in front of it to count.
     (and (null pending-undo-list)
@@ -223,7 +222,7 @@
     (setq count (min (/ records-between 2) count)
           p (primitive-undo (1+ count) buffer-undo-list))
     (if (eq p old-undo-list)
-      nil ;; nothing happened
+        nil ;; nothing happened
       ;; set buffer-undo-list to the new undo list.  if has been
       ;; shortened by `count' records.
       (setq buffer-undo-list p)
@@ -237,9 +236,9 @@
       (let ((n (- records-between count)))
         (setq p (cdr old-undo-list))
         (while (and p (> n 0))
-               (if (null (car p))
-                 (setq n (1- n)))
-               (setq p (cdr p)))
+          (if (null (car p))
+              (setq n (1- n)))
+          (setq p (cdr p)))
         (setq pending-undo-list p)))
     (and modified (not (buffer-modified-p))
          (delete-auto-save-file-if-necessary recent-save))
@@ -262,7 +261,7 @@
         (let ((p buffer-undo-list))
           (and (null (car-safe p)) (setq p (cdr-safe p)))
           (while (and p (integerp (car-safe p)))
-                 (setq p (cdr-safe p)))
+            (setq p (cdr-safe p)))
           (eq last-buffer-undo-list p))
         (progn (undo-start)
                (undo-more 1)))
@@ -278,19 +277,19 @@
     (let ((list buffer-undo-list)
           (prev nil))
       (while (and list (not (null (car list))))
-             (if (integerp (car list))
-               (if prev
-                 (setcdr prev (cdr list))
-                 ;; impossible now, but maybe not in the future 
-                 (setq buffer-undo-list (cdr list))))
-             (setq prev list
-                   list (cdr list))))
+        (if (integerp (car list))
+            (if prev
+                (setcdr prev (cdr list))
+              ;; impossible now, but maybe not in the future 
+              (setq buffer-undo-list (cdr list))))
+        (setq prev list
+              list (cdr list))))
     (and modified (not (buffer-modified-p))
          (delete-auto-save-file-if-necessary recent-save)))
   (or (eq (selected-window) (minibuffer-window))
       (message "Undo!"))
   (setq last-buffer-undo-list buffer-undo-list))
-; }
+;; }
 
 
 ;;;; # Automatic format detection #
