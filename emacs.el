@@ -61,6 +61,7 @@
             (set-fringe-style "default")
             (set-face-background 'fringe "gray5")
             )
+        )
       )
   )
 
@@ -89,7 +90,6 @@
       (set-face-background 'fringe "gray5")
       )
   )
-)
 
 
 ;;;; # encoding scheme #
