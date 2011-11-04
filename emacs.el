@@ -1,8 +1,17 @@
+;;;; # Including path
+
 (add-to-list 'load-path "~/.emacs.d/config/")
+
+
+;;;; # Color theme #
+
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
 (color-theme-clarity)
+
+
+;;;; # General key mapping #
 
 (add-to-list 'load-path "~/.emacs.d/highlight-symbol/")
 (require 'highlight-symbol)
@@ -18,15 +27,16 @@
 (global-set-key (kbd "C-c C-v") 'view-mode)
 
 
-;;; System-based detecting functions
-;; Check if system is Darwin/Mac OS X
+;;;; # System-based detecting functions #
+
+;;; Check if system is Darwin/Mac OS X
 (defun system-type-is-darwin ()
   (interactive)
   "Return true if system is darwin-based (Mac OS X)"
   (string-equal system-type "darwin")
   )
 
-;; Check if system is GNU/Linux
+;;; Check if system is GNU/Linux
 (defun system-type-is-gnu ()
   (interactive)
   "Return true if system is GNU/Linux-based"
@@ -34,13 +44,13 @@
   )
 
 
-;;; UI settings
+;;;; # UI settings #
 (global-font-lock-mode 1) ; always syntax highlighting
-;(menu-bar-mode -1)        ; do not use menu bar
+;;(menu-bar-mode -1)        ; do not use menu bar
 (column-number-mode 1)    ; line number
 (show-paren-mode 1)       ; parenthese pairing
 
-;; for OSX only
+;; ## for OSX only ##
 (if (system-type-is-darwin)
     (progn
       (menu-bar-mode -1)                 ; do not use menu bar
@@ -81,7 +91,8 @@
   )
 )
 
-;; encoding scheme
+
+;;;; # encoding scheme #
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment 'utf-8)
@@ -91,7 +102,7 @@
 (set-next-selection-coding-system 'utf-8)
 
 
-;; auto backup
+;;;; # auto backup #
 (setq auto-save-default nil)
 (setq delete-auto-save-file t
       auto-save-timeout 300
@@ -108,8 +119,8 @@
 (setq dired-kept-versions 1)
 
 
-;; clipboard
-; (transient-mark-mode 1)           ; makes the region act quite like the text "highlight" in many apps.
+;;;; # clipboard #
+;;(transient-mark-mode 1)           ; makes the region act quite like the text "highlight" in many apps.
 (setq mouse-drag-copy-region nil)   ; stops selection with a mouse being immediately injected to the kill ring
 (setq x-select-enable-primary nil)  ; stops killing/yanking interacting with primary X11 selection
 (setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
@@ -118,8 +129,8 @@
 (if (system-type-is-gnu)
     (setf interprogram-paste-function 'x-cut-buffer-or-selection-value)
   )
-; Workaround: bug #902
-; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
+;; Workaround: bug #902
+;; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
 (setq select-active-regions t)                  ; active region sets primary X11 selection
 (global-set-key [mouse-2] 'mouse-yank-primary)  ; make mouse middle-click only paste from primary X11 selection,
                                                 ; not clipboard and kill ring.
@@ -129,7 +140,7 @@
 ; (setq yank-pop-change-selection t)  ; makes rotating the kill ring change the X11 clipboard.
 
 
-;; misc
+;;;; # misc #
 (setq inhibit-startup-message t) ; skip startup screen
 (icomplete-mode 1)               ; hints for M-x
 (fset 'yes-or-no-p 'y-or-n-p)    ; y/n instead of yes/no
@@ -140,7 +151,7 @@
 (setq-default tab-width 4)       ; tab width
 (setq-default indent-tabs-mode nil) ; disable indent with tabs as default
 
-; implement of redo function {
+;; implement of redo function {
 (provide 'redo)
 
 (defvar redo-version "1.02"
@@ -282,11 +293,9 @@
 ; }
 
 
-;;
-;; Automatic format detection
-;;
+;;;; # Automatic format detection #
 
-;; Lisp family {
+;;; Lisp family
 (setq auto-mode-alist
       (append '(
                 ("\\.emacs$" . emacs-lisp-mode)
@@ -299,15 +308,14 @@
                 ("\\.ss$" . scheme-mode)
                 ("\\.sch$" . scheme-mode)
                 )auto-mode-alist))
-;; }
 
 
+;;; =======================
+;;;; # 3rd party plugins #
+;;; =======================
 
-;;;
-;;; 3rd party plugins
-;;;
-
-;;; linum Plus {
+;;;; # linum Plus #
+;;; {
 ;;; This plugin shows the line number.
 (if window-system
     (progn
@@ -318,52 +326,67 @@
   )
 ;;; }
 
-;;; undo-tree {
+
+;;;; # undo-tree #
+;;; {
 (add-to-list 'load-path "~/.emacs.d/external/undo-tree")
 (require 'undo-tree)
 ;;; }
 
 
-;;; Evil {
+;;;; # Evil #
+;;; {
 ;;; http://gitorious.org/evil/pages/Home
 ;;; This plugin depends on undo-tree.
 ;; see config/evil-config.el
 (load "evil-config.el")
 ;;; }
 
-;;; Yasnippad {
+
+;;;; # Yasnippad #
+;;; {
 (add-to-list 'load-path "~/.emacs.d/external/yasnippet-0.6.1c")
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/external/yasnippet-0.6.1c/snippets")
 ;;; }
 
-;;; dtrt indent {
+
+;;;; # dtrt indent #
+;;; {
 ;;; This plugin helps us to detect proper indent style automatically.
 (add-to-list 'load-path "~/.emacs.d/external/dtrt-indent")
 (require 'dtrt-indent)
 (dtrt-indent-mode 1)
 ;;; }
 
-;;; Go {
+
+;;;; # Go #
+;;; {
 (add-to-list 'load-path "~/.emacs.d/external/go" t)
 (require 'go-mode-load)
 ;;; }
 
-;;; Scala {
+
+;;;; # Scala #
+;;; {
 ;;; This plugin is included in official Scala repo under
 ;;; misc/scala-tool-support/emacs/ .
 (add-to-list 'load-path "~/.emacs.d/external/scala")
 (require 'scala-mode-auto)
 ;;; }
 
-;;; ENSIME - ENhanced Scala Interaction Mode for Emacs {
+
+;;;; # ENSIME - ENhanced Scala Interaction Mode for Emacs #
+;;; {
 (add-to-list 'load-path "~/.emacs.d/external/ensime_2.9.1-0.7.6/elisp")
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 ;;; }
 
-;;; Markdown mode
+
+;;;; # Markdown mode #
+;;; {
 (add-to-list 'load-path "~/.emacs.d/external/markdown-mode")
 (autoload 'markdown-mode "markdown-mode.el"
   "Major mode for editing Markdown files" t
@@ -377,4 +400,5 @@
   "markdown-mode-hook"
   (define-key markdown-mode-map (kbd "<tab>") nil))
 (add-hook 'markdown-mode-hook '(lambda() (markdown-unset-tab)))
+;;; }
 
