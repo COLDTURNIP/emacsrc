@@ -16,6 +16,23 @@
 (global-set-key (kbd "<f9>") 'view-mode)
 (global-set-key (kbd "C-c C-v") 'view-mode)
 
+
+;;; System-based detecting functions
+;; Check if system is Darwin/Mac OS X
+(defun system-type-is-darwin ()
+  (interactive)
+  "Return true if system is darwin-based (Mac OS X)"
+  (string-equal system-type "darwin")
+  )
+
+;; Check if system is GNU/Linux
+(defun system-type-is-gnu ()
+  (interactive)
+  "Return true if system is GNU/Linux-based"
+  (string-equal system-type "gnu/linux")
+  )
+
+
 ;;; UI settings
 (global-font-lock-mode 1) ; always syntax highlighting
 ;(menu-bar-mode -1)        ; do not use menu bar
