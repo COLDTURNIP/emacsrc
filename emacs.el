@@ -38,25 +38,47 @@
 ;(menu-bar-mode -1)        ; do not use menu bar
 (column-number-mode 1)    ; line number
 (show-paren-mode 1)       ; parenthese pairing
-(setq window-system-default-frame-alist
-      '(
-        ;; if frame created on x display
-        (x
-          ;; mouse
-          (mouse-wheel-mode . 1)
-          (mouse-wheel-follow-mouse . t)
-          (mouse-avoidance-mode . 'exile)
-          ;; face
-          (font . "Droid Sans Mono-8")
-          )
-        ;; if on term
-        (nil
-          )
-        )
+
+;; for OSX only
+(if (system-type-is-darwin)
+    (progn
+      (menu-bar-mode -1)                 ; do not use menu bar
+      (setq mac-allow-anti-aliasing nil) ; do not use anti-aliasing fonts
+      (if window-system
+          (progn
+            ;; fringe
+            (set-fringe-style "default")
+            (set-face-background 'fringe "gray5")
+            )
       )
-;; fringe
-(set-fringe-style "default")
-(set-face-background 'fringe "gray5")
+  )
+
+;; for Linux only
+(if (system-type-is-gnu)
+    (progn
+      ;;(menu-bar-mode -1) ; use menu bar
+      (setq window-system-default-frame-alist
+            '(
+              ;; if frame created on x display
+              (x
+               ;; mouse
+               (mouse-wheel-mode . 1)
+               (mouse-wheel-follow-mouse . t)
+               (mouse-avoidance-mode . 'exile)
+               ;; face
+               (font . "Droid Sans Mono-8")
+               )
+              ;; if on term
+              (nil
+               )
+              )
+            )
+      ;; fringe
+      (set-fringe-style "default")
+      (set-face-background 'fringe "gray5")
+      )
+  )
+)
 
 ;; encoding scheme
 (set-terminal-coding-system 'chinese-big5)
