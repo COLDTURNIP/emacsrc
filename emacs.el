@@ -97,7 +97,9 @@
 (setq x-select-enable-clipboard t)  ; makes killing/yanking interact with clipboard X11 selection
 ;; leave the following two lines if above works fine.
 (setf interprogram-cut-function 'x-select-text)
-(setf interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(if (system-type-is-gnu)
+    (setf interprogram-paste-function 'x-cut-buffer-or-selection-value)
+  )
 ; Workaround: bug #902
 ; it makes "highlight/middlebutton" style (X11 primary selection based) copy-paste work as expected
 (setq select-active-regions t)                  ; active region sets primary X11 selection
