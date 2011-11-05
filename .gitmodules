@@ -7,3 +7,6 @@
 [submodule "external/dtrt-indent"]
 	path = external/dtrt-indent
 	url = git://git.savannah.nongnu.org/dtrt-indent.git
+[submodule "external/markdown-mode"]
+	path = external/markdown-mode
+	url = git://jblevins.org/git/markdown-mode.git
