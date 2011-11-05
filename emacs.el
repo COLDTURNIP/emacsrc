@@ -1,7 +1,7 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-charcoal-black)
+(color-theme-clarity)
 
 (add-to-list 'load-path "~/.emacs.d/highlight-symbol/")
 (require 'highlight-symbol)
