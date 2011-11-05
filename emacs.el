@@ -291,9 +291,13 @@
 
 ;;; linum Plus {
 ;;; This plugin shows the line number.
-(add-to-list 'load-path "~/.emacs.d/external/linum-plus")
-(require 'linum+)
-(global-linum-mode t)
+(if window-system
+    (progn
+      (add-to-list 'load-path "~/.emacs.d/external/linum-plus")
+      (require 'linum+)
+      (global-linum-mode t)
+      )
+  )
 ;;; }
 
 ;;; undo-tree {
