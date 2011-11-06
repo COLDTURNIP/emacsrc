@@ -82,9 +82,9 @@
 )
 
 ;; encoding scheme
-(set-terminal-coding-system 'chinese-big5)
-(set-keyboard-coding-system 'chinese-big5)
-(set-language-environment 'chinese-big5)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-language-environment 'utf-8)
 (set-selection-coding-system 'utf-8)
 (set-buffer-file-coding-system 'utf-8)
 (set-clipboard-coding-system 'utf-8)
