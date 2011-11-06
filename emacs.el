@@ -1,3 +1,4 @@
+(add-to-list 'load-path "~/.emacs.d/config/")
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
@@ -309,9 +310,8 @@
 ;;; Evil {
 ;;; http://gitorious.org/evil/pages/Home
 ;;; This plugin depends on undo-tree.
-(add-to-list 'load-path "~/.emacs.d/external/evil")
-(require 'evil)
-(evil-mode 1)
+;; see config/evil-config.el
+(load "evil-config.el")
 ;;; }
 
 ;;; Yasnippad {
