@@ -91,6 +91,23 @@
 (set-next-selection-coding-system 'utf-8)
 
 
+;; auto backup
+(setq auto-save-default nil)
+(setq delete-auto-save-file t
+      auto-save-timeout 300
+      ;;auto-save-interval 400
+      )
+(setq auto-save-mode t)
+(setq version-control t)
+(setq kept-old-versions 2)
+(setq kept-new-versions 10)
+(setq delete-old-versions t)
+(setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
+(setq backup-by-copying t)
+(setq make-backup-file nil)
+(setq dired-kept-versions 1)
+
+
 ;; clipboard
 ; (transient-mark-mode 1)           ; makes the region act quite like the text "highlight" in many apps.
 (setq mouse-drag-copy-region nil)   ; stops selection with a mouse being immediately injected to the kill ring
