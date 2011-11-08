@@ -28,6 +28,7 @@
 
 (global-set-key (kbd "C-w") 'cdip-backward-kill-word)
 
+(global-set-key (kbd "C-x a r") 'align-regexp)
 
 ;;;; # System-based detecting functions #
 
