@@ -20,6 +20,7 @@
 (define-key evil-insert-state-map (kbd "C-n") 'next-line)
 (define-key evil-insert-state-map (kbd "C-e") 'end-of-line)
 (define-key evil-insert-state-map (kbd "C-k") 'evil-delete-line)
+(define-key evil-insert-state-map (kbd "C-w") 'cdip-backward-kill-word)
 (define-key evil-normal-state-map (kbd "gb") 'electric-buffer-list)
 (define-key evil-normal-state-map (kbd "gB") (lambda () (interactive) (switch-to-buffer nil)))
 (define-key evil-normal-state-map (kbd "gm") 'bookmark-jump)

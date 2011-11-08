@@ -26,6 +26,8 @@
 (global-set-key (kbd "<f9>") 'view-mode)
 (global-set-key (kbd "C-c C-v") 'view-mode)
 
+(global-set-key (kbd "C-w") 'cdip-backward-kill-word)
+
 
 ;;;; # System-based detecting functions #
 
@@ -290,6 +292,28 @@
       (message "Undo!"))
   (setq last-buffer-undo-list buffer-undo-list))
 ;; }
+
+
+;; re-implement my backward-kill-word
+(defun cdip-backward-kill-word (&optional arg)
+  "Replacement for the backward-kill-word command
+If the region is active, then invoke kill-region.  Otherwise, use
+the following custom backward-kill-word procedure.
+If the previous word is on the same line, then kill the previous
+word.  Otherwise, if the previous word is on a prior line, then kill
+to the beginning of the line.  If point is already at the beginning
+of the line, then kill to the end of the previous line.
+
+With argument ARG and region inactive, do this that many times."
+  (interactive "p")
+  (if (bolp)
+      (backward-delete-char 1)
+    (if (string-match "^[^a-zA-Z0-9]+$" (buffer-substring (point-at-bol) (point)))
+        (kill-region (point-at-bol) (point))
+      (backward-kill-word 1)
+      )
+    )
+  )
 
 
 ;;;; # Automatic format detection #
