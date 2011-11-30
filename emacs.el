@@ -408,6 +408,12 @@ With argument ARG and region inactive, do this that many times."
 (add-to-list 'load-path "~/.emacs.d/external/ensime_2.9.1-0.7.6/elisp")
 (require 'ensime)
 (add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
+(add-hook 'scala-mode-hook
+          (lambda ()
+            (define-key scala-mode-map (kbd "M-n") 'ensime-forward-note)
+            (define-key scala-mode-map (kbd "M-p") 'ensime-backward-note)
+            )
+          )
 ;;; }
 
 
