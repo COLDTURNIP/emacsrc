@@ -373,6 +373,8 @@ With argument ARG and region inactive, do this that many times."
 (require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/.emacs.d/external/yasnippet-0.6.1c/snippets")
+(add-hook 'scala-mode-hook 'yas/minor-mode-on)
+(yas/global-mode 1)
 ;;; }
 
 
