@@ -143,6 +143,7 @@
 
 
 ;;;; # misc #
+(setq initial-major-mode 'lisp-interaction-mode)
 (setq inhibit-startup-message t) ; skip startup screen
 (icomplete-mode 1)               ; hints for M-x
 (fset 'yes-or-no-p 'y-or-n-p)    ; y/n instead of yes/no
