@@ -445,3 +445,9 @@ With argument ARG and region inactive, do this that many times."
 (add-hook 'markdown-mode-hook '(lambda() (markdown-unset-tab)))
 ;;; }
 
+
+;;;; # graphviz-dot mode #
+;;; {
+(load-file "~/.emacs.d/external/graphviz-dot-mode/graphviz-dot-mode.el")
+;;; }
+
