@@ -10,3 +10,6 @@
 [submodule "external/markdown-mode"]
 	path = external/markdown-mode
 	url = git://jblevins.org/git/markdown-mode.git
+[submodule "external/ace-jump-mode"]
+	path = external/ace-jump-mode
+	url = https://github.com/winterTTr/ace-jump-mode.git

@@ -368,6 +368,15 @@ With argument ARG and region inactive, do this that many times."
 ;;; }
 
 
+;;;; # ace jump mode #
+;;; {
+;;; https://github.com/winterTTr/ace-jump-mode/
+(add-to-list 'load-path "~/.emacs.d/external/ace-jump-mode")
+(require 'ace-jump-mode)
+(define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+;;; }
+
+
 ;;;; # Yasnippad #
 ;;; {
 (add-to-list 'load-path "~/.emacs.d/external/yasnippet-0.6.1c")
