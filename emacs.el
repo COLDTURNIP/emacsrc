@@ -21,7 +21,7 @@
 (global-set-key (kbd "M-<f3>") 'highlight-symbol-prev)
 
 (global-set-key (kbd "C-x C-b") 'electric-buffer-list)
-(global-set-key (kbd "C-z") 'set-mark-command)
+;;(global-set-key (kbd "C-z") 'set-mark-command)
 
 (global-set-key (kbd "<f9>") 'view-mode)
 (global-set-key (kbd "C-c C-v") 'view-mode)
