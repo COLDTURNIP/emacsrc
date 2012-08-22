@@ -8,7 +8,9 @@
 (add-to-list 'load-path "~/.emacs.d/color-theme/")
 (require 'color-theme)
 (color-theme-initialize)
-(color-theme-clarity)
+(load-file "~/.emacs.d/external/twilight-emacs/color-theme-twilight.el")
+;; (color-theme-clarity)
+(color-theme-twilight)
 
 
 ;;;; # General key mapping #
